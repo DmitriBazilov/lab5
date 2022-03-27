@@ -11,7 +11,6 @@ import java.util.logging.Logger;
 
 public class CommandFetcher {
 
-	private List<String> splitResult;
 	private WorkerCollection collection;
 	private boolean needId;
 	private boolean needWorker;
@@ -21,13 +20,7 @@ public class CommandFetcher {
 	}
 	
 	public CommandFetcher(WorkerCollection collection) {
-		splitResult = new ArrayList<>();
 		this.collection = collection;
-	}
-	
-	public void splitLine(String line) {
-		String[] temp = line.split("\\s+");
-		splitResult = Arrays.asList(temp);
 	}
 	
 	public void checkAnnotation(Class command) {
@@ -37,8 +30,8 @@ public class CommandFetcher {
 			amountArgs = comAnn.amountArgs();
 	}
 	
-	public Class fetchCommand() {
-		String name = splitResult.get(0);
+	public Class fetchCommand(String line) {
+		String name = line;
 		Commands[] coms = Commands.values();
 		for (Commands c : coms) {
 			//System.out.println(c.getCommandName());
@@ -49,15 +42,9 @@ public class CommandFetcher {
 		return null;
 	}
 	
-	public Integer fetchId() {
-		String stringId = splitResult.get(1);
-		Integer result = Integer.parseInt(stringId);
+	public Integer fetchId(String line) {
+		Integer result = Integer.parseInt(line);
 		return result;
-	}
-
-	public String[] fetchLineArgs() {
-		int temp = needId ? 1 : 0;
-		return (String[]) splitResult.subList(1 + temp, splitResult.size() - 1).toArray();
 	}
 	
 	public boolean checkAmountArgs(int number) {
