@@ -1,0 +1,23 @@
+[ {
+  "id" : 1,
+  "name" : "rab1",
+  "coordinates" : {
+    "x" : 1.0,
+    "y" : 1
+  },
+  "creationDate" : 1616489012.010069453,
+  "salary" : 123123,
+  "startDate" : [ 2021, 3, 23, 10, 43, 32, 10069453 ],
+  "position" : "LABORER",
+  "status" : "FIRED",
+  "person" : {
+    "weight" : 55,
+    "eyeColor" : "RED",
+    "hairColor" : "BLACK",
+    "location" : {
+      "x" : 1.123,
+      "y" : 123,
+      "z" : 111
+    }
+  }
+} ]
