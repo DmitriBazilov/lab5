@@ -52,13 +52,13 @@ public class WorkerCollection {
 	}
 
 	public static void info() {
-		System.out.println(workerCollection.getClass().toString() + creationDate + workerCollection.size());
+		System.out.println(workerCollection.getClass().toString() +  " " + creationDate +  " " + workerCollection.size());
 	}
 
 	public static void show() {
 		Collection<Worker> workers = workerCollection.values();
 		for (Worker w : workers) {
-			System.out.println(w.getCreationDate());
+			System.out.println(w.toString());
 		}
 	}
 
@@ -71,18 +71,23 @@ public class WorkerCollection {
 		while (workerCollection.floorKey(id) != null) 
 			WorkerCollection.removeId(workerCollection.floorKey(id));
 	}
+	
+	public static void removeLowerKey(Integer key) {
+		while (workerCollection.floorKey(key) != null) 
+			WorkerCollection.removeId(key);
+	}
 
 	public static void replaceIfGreater(Integer id, Worker worker) {
 	}
 
-	public static Long maxBySalary() {
+	public static void maxBySalary() {
 		Collection<Worker> workers = workerCollection.values();
 		Long result = 0l;
 		for (Worker worker : workers) {
 			if (result.compareTo(worker.getSalary()) < 0)
 				result = worker.getSalary();
 		}
-		return result;
+		System.out.println(result);
 	}
 
 	public static void printUniquePosition() {
@@ -96,6 +101,7 @@ public class WorkerCollection {
 		}
 		System.out.println("");
 	} 
+	
 	
 }
 

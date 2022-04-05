@@ -1,26 +1,18 @@
 package com.Dmitrii.client.commandhub;
 
+import com.Dmitrii.client.reader.ArgumentsReader;
 import java.lang.reflect.*;
-import com.Dmitrii.client.reader.LineReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import com.Dmitrii.client.worker.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.InputStream;
+import java.time.format.DateTimeParseException;
 
 public class CommandFetcher {
 
-	private WorkerCollection collection;
 	private boolean needId;
 	private boolean needWorker;
 	private int amountArgs;
 
 	public CommandFetcher() {
-	}
-	
-	public CommandFetcher(WorkerCollection collection) {
-		this.collection = collection;
 	}
 	
 	public void checkAnnotation(Class command) {
@@ -39,7 +31,7 @@ public class CommandFetcher {
 				return c.getCommandClass();
 			}
 		}
-		return null;
+		throw new IllegalArgumentException("Сорян такой команды нет");
 	}
 	
 	public Integer fetchId(String line) {
@@ -64,30 +56,70 @@ public class CommandFetcher {
 		}
 	}
 	
-	public void startCommand(Class command, Integer id) throws Exception {
-		try {
+	public void startCommand(Class command, Integer id) throws NoSuchMethodException, 
+														SecurityException, 
+														InstantiationException,
+														IllegalAccessException,
+														IllegalArgumentException,
+														InvocationTargetException {
+		
+			System.out.println(command);
 			Constructor<Command> cons = command.getDeclaredConstructor(Integer.class);
+			System.out.println("PIDOR");
 			Command comInstance = cons.newInstance(id);
+			System.out.println("PIDOR");
 			boolean returnCode = comInstance.execute();
 			System.out.println("TbI DAUN");
-		} catch (Exception e) {
-			throw e;
-		}
 	}
 	
-	public void startCommand(Class command, Worker worker) {
-		
+	public void startCommand(Class command, Worker worker) throws NoSuchMethodException, 
+															InstantiationException, 
+															IllegalAccessException, 
+															IllegalArgumentException, 
+															InvocationTargetException {
+			System.out.println(command);
+			Constructor<Command> cons = command.getDeclaredConstructor(Worker.class);
+			Command comInstance = cons.newInstance(worker);
+			comInstance.execute();
+			
 	}
 	
 	public void startCommand(Class command, Integer id, Worker worker) {
 		
 	}
-
-	public String[] readArgs() {
-		return null;
+	
+	public Integer readId(InputStream stream) throws IllegalArgumentException {
+		if (!needId) 
+			return null;
+		ArgumentsReader reader = new ArgumentsReader(stream);
+		Integer result = null;
+		while (result == null) {
+			try {
+				result = reader.readId();
+			} catch (IllegalArgumentException e) {
+				throw e;
+			}
+		}
+		return result;
+	}
+	
+	public Worker readWorker(InputStream stream) {
+		if (!needWorker)
+			return null;
+		ArgumentsReader reader = new ArgumentsReader(stream);
+		Worker result = null;
+		while (result == null) {
+			try {
+				result = reader.readWorker();
+			} catch (IllegalArgumentException | NullPointerException e) {
+				throw e;
+			}
+		}
+		return result;
 	}
 	
 	public void clear() {
-		
 	}
+
+	
 }

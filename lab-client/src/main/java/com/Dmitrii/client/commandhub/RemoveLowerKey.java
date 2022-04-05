@@ -19,7 +19,7 @@ public class RemoveLowerKey extends Command {
 	}
 
 	public boolean execute() {
-		WorkerCollection.removeId(key);
+		WorkerCollection.removeLowerKey(key);
 		return true;
 	}
 }

@@ -5,42 +5,37 @@ import com.Dmitrii.client.worker.Location;
 
 public class PersonValidator {
 
-	public static Integer validateWeight(String[] args) throws IllegalArgumentException, NumberFormatException {
-		if (args == null)
+	public static Integer validateWeight(String s) throws IllegalArgumentException, NumberFormatException {
+		if (s == null)
 			return null;
-		if (args.length != 1)
-			throw new IllegalArgumentException("Вес это одно число");
 		try {
-			Integer result = WeightValidator.validateWeight(args[0]);
+			Integer result = WeightValidator.validateWeight(s);
 			return result;
 		} catch (IllegalArgumentException e) {
 			throw e;
 		}
 	}
 
-	public static Color validateEyeColor(String[] args) throws IllegalArgumentException, NumberFormatException {
-		if (args.length != 1)
-			throw new IllegalArgumentException("Enum должен быть одним словом");
+	public static Color validateEyeColor(String s) throws IllegalArgumentException, NumberFormatException {
 		try {
-			Color result = EyeColorValidator.validateEyeColor(args[0]);
+			Color result = EyeColorValidator.validateEyeColor(s);
 			return result;
 		} catch (IllegalArgumentException | NullPointerException e) {
 			throw e;
 		}
 	}
 
-	public static Color validateHairColor(String[] args) throws IllegalArgumentException, NumberFormatException {
-		if (args.length != 1)
-			throw new IllegalArgumentException("Enum должен быть одним словом");
+	public static Color validateHairColor(String s) throws IllegalArgumentException, NumberFormatException {
 		try {
-			Color result = HairColorValidator.validateHairColor(args[0]);
+			Color result = HairColorValidator.validateHairColor(s);
 			return result;
 		} catch (IllegalArgumentException | NullPointerException e) {
 			throw e;
 		}
 	}
 
-	public static Location validateLocation(String[] args) throws IllegalArgumentException, NumberFormatException {
+	public static Location validateLocation(String s) throws IllegalArgumentException, NumberFormatException {
+		String[] args = s.split("\\s+");
 		if (args == null)
 			return null;
 		if (args.length != 3)

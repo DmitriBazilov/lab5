@@ -3,8 +3,22 @@ package com.Dmitrii.client.worker.validator;
 import com.Dmitrii.client.worker.*;
 import java.time.ZonedDateTime;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 
 public class WorkerValidator {
+	
+	public static Worker validateWorker(Worker w) throws IllegalArgumentException, NumberFormatException, DateTimeParseException, NullPointerException {
+		validateId(w.getId());
+		validateName(w.getName());
+		validateCoordinates(w.getCoordinates());
+		validateCreationDate(w.getCreationDate());
+		validateSalary(w.getSalary());
+		validateStartDate(w.getStartDate());
+		validatePosition(w.getPosition());
+		validateStatus(w.getStatus());
+		validatePerson(w.getPerson());
+		return w;
+	}
 	
 	public static Integer validateId(Integer id) throws IllegalArgumentException {
 		if (id == null || id <= 0)
@@ -54,13 +68,13 @@ public class WorkerValidator {
 		}
 	}
 
-	public static LocalDateTime validateStartDate(LocalDateTime time) throws Exception {
+	public static LocalDateTime validateStartDate(LocalDateTime time) throws IllegalArgumentException, DateTimeParseException {
 		if (time == null)
 			throw new IllegalArgumentException("Время не может быть null");
 		try {
 			LocalDateTime result = StartDateValidator.validateStartDate(time.toString());
 			return result;
-		} catch (Exception e) {
+		} catch (IllegalArgumentException | DateTimeParseException e) {
 			throw e;
 		}
 	}
@@ -87,14 +101,14 @@ public class WorkerValidator {
 		}
 	}
 
-	public static Person validatePerson(Person p) {
+	public static Person validatePerson(Person p) throws IllegalArgumentException, NullPointerException {
 		if (p == null)
 			return null;
 		try {
-			Integer resultWeight = PersonValidator.validateWeight(p.getWeight().toString().split(" "));
-			Color resultEyeColor = PersonValidator.validateEyeColor(p.getEyeColor().toString().split(" "));
-			Color resultHairColor = PersonValidator.validateHairColor(p.getHairColor().toString().split(" "));
-			Location resultLocation = PersonValidator.validateLocation(p.getLocation().toStringArray());
+			Integer resultWeight = PersonValidator.validateWeight(p.getWeight().toString());
+			Color resultEyeColor = PersonValidator.validateEyeColor(p.getEyeColor().toString());
+			Color resultHairColor = PersonValidator.validateHairColor(p.getHairColor().toString());
+			Location resultLocation = PersonValidator.validateLocation(p.getLocation().toString());
 			return p;
 		} catch (IllegalArgumentException | NullPointerException e) {
 			throw e;

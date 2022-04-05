@@ -22,16 +22,9 @@ public final class Client {
 		List<Worker> worker = new ArrayList<>();
 		worker = parser.getClasses(workers);
 		for (Worker w : worker) {
+			w.setId();
 			try {
-			WorkerValidator.validateId(w.getId());
-			WorkerValidator.validateName(w.getName());
-			WorkerValidator.validateCoordinates(w.getCoordinates());
-			WorkerValidator.validateCreationDate(w.getCreationDate());
-			WorkerValidator.validateSalary(w.getSalary());
-			WorkerValidator.validateStartDate(w.getStartDate());
-			WorkerValidator.validatePosition(w.getPosition());
-			WorkerValidator.validateStatus(w.getStatus());
-			WorkerValidator.validatePerson(w.getPerson());
+				WorkerValidator.validateWorker(w);
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.exit(1);

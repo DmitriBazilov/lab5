@@ -42,12 +42,7 @@ public class Location {
 		return z;
 	}
 	
-	public String[] toStringArray() {
-		List<String> list = new ArrayList<String>();
-		list.add(x.toString());
-		list.add(Long.toString(y));
-		list.add(Integer.toString(z));
-		String[] result = new String[3];
-		return list.toArray(result);
+	public String toString() {
+		return x.toString() + " " + Long.toString(y) + " " + Integer.toString(z);
 	}
 }

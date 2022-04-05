@@ -22,6 +22,7 @@ public class UpdateId extends Command {
 	}
 
 	public boolean execute() {
+		worker.setId(id);
 		WorkerCollection.update(id, worker);
 		return true;
 	}

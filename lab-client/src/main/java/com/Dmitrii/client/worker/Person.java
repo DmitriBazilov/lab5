@@ -10,6 +10,13 @@ public class Person {
 	public Person() {
 	}
 
+	public Person(Integer weight, Color eyeColor, Color hairColor, Location location) {
+		this.weight = weight;
+		this.eyeColor = eyeColor;
+		this.hairColor = hairColor;
+		this.location = location;
+	}
+
 	public void setWeight(Integer weight) {
 		this.weight = weight;
 	}
@@ -42,4 +49,8 @@ public class Person {
 		return location;
 	}
 
+	@Override
+	public String toString() {
+		return "Person{" + "weight=" + weight + ", eyeColor=" + eyeColor + ", hairColor=" + hairColor + ", location=" + location + '}';
+	}
 }

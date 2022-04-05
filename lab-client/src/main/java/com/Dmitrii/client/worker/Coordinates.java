@@ -8,6 +8,11 @@ public class Coordinates {
 	public Coordinates() {
 	}
 
+	public Coordinates(double x, long y) {
+		this.x = x;
+		this.y = y;
+	}
+
 	public void setX(double x) {
 		this.x = x;
 	}
@@ -22,5 +27,10 @@ public class Coordinates {
 	
 	public long getY() {
 		return y;
+	}
+
+	@Override
+	public String toString() {
+		return "Coordinates{" + "x=" + x + ", y=" + y + '}';
 	}
 }

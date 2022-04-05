@@ -24,8 +24,24 @@ public class Worker implements Comparable<Worker> {
 		creationDate = ZonedDateTime.now();
 	}
 
+	public Worker(String name, Coordinates coordinates, Long salary, LocalDateTime startDate, Position position, Status status, Person person) {
+		this.name = name;
+		this.coordinates = coordinates;
+		this.salary = salary;
+		this.startDate = startDate;
+		this.position = position;
+		this.status = status;
+		this.person = person;
+		this.creationDate = ZonedDateTime.now();
+		this.id = idCounter++;
+	}
+
 	public void setId() {
 		id = idCounter++;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public Integer getId() {
@@ -95,9 +111,16 @@ public class Worker implements Comparable<Worker> {
 	public Person getPerson() {
 		return person;
 	}
-
+	
 	@Override
 	public int compareTo(Worker w) {
 		return Comparator.comparing(Worker::getId).thenComparingLong(Worker::getSalary).compare(this, w);
 	}
+
+	@Override
+	public String toString() {
+		return "Worker{" + "id=" + id + ", name=" + name + ", coordinates=" + coordinates + ", creationDate=" + creationDate + ", salary=" + salary + ", startDate=" + startDate + ", position=" + position + ", status=" + status + ", person=" + person + '}';
+	}
+	
+	
 }

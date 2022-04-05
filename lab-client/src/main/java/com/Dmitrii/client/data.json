@@ -1,23 +1,23 @@
 [ {
-  "id" : 1,
-  "name" : "rab1",
+  "id" : 3,
+  "name" : "fucking slave",
   "coordinates" : {
-    "x" : 1.0,
-    "y" : 1
+    "x" : 6.0,
+    "y" : 9
   },
-  "creationDate" : 1616489012.010069453,
-  "salary" : 123123,
-  "startDate" : [ 2021, 3, 23, 10, 43, 32, 10069453 ],
-  "position" : "LABORER",
+  "creationDate" : 1649175719.902709000,
+  "salary" : 2281337,
+  "startDate" : [ 2021, 3, 23, 16, 43, 32, 10069453 ],
+  "position" : "HUMAN_RESOURCES",
   "status" : "FIRED",
   "person" : {
-    "weight" : 55,
+    "weight" : 500,
     "eyeColor" : "RED",
     "hairColor" : "BLACK",
     "location" : {
-      "x" : 1.123,
-      "y" : 123,
-      "z" : 111
+      "x" : 2.0,
+      "y" : 2,
+      "z" : 8
     }
   }
 } ]
