@@ -1,5 +1,9 @@
 package com.Dmitrii.client.worker.validator;
 
+/**
+ *
+ * Валидатор зарплаты раба.
+ */
 public class SalaryValidator {
 
 	public static Long validateSalary(String s) throws IllegalArgumentException, NumberFormatException {

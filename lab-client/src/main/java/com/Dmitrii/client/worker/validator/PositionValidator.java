@@ -2,6 +2,10 @@ package com.Dmitrii.client.worker.validator;
 
 import com.Dmitrii.client.worker.Position;
 
+/**
+ *
+ * Валидатор должности раба.
+ */
 public class PositionValidator {
 
 	public static Position validatePosition(String p) throws IllegalArgumentException {

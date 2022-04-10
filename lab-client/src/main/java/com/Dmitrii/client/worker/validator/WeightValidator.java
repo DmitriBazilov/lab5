@@ -1,5 +1,9 @@
 package com.Dmitrii.client.worker.validator;
 
+/**
+ *
+ * Валидатор веса раба.
+ */
 public class WeightValidator {
 
 	public static Integer validateWeight(String s) throws IllegalArgumentException, NumberFormatException {

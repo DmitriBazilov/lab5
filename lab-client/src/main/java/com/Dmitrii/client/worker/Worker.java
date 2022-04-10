@@ -3,8 +3,11 @@ package com.Dmitrii.client.worker;
 import java.time.ZonedDateTime;
 import java.time.LocalDateTime;
 import java.util.Comparator;
-import java.util.Date;
 
+/**
+ *
+ * Непосредственно сам класс раба.
+ */
 public class Worker implements Comparable<Worker> {
 
 	public static final int COUNTOFSETARGS = 7;

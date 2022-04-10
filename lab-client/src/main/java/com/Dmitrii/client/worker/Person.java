@@ -1,5 +1,9 @@
 package com.Dmitrii.client.worker;
 
+/**
+ *
+ * Класс Человека.
+ */
 public class Person {
 
 	private Integer weight;

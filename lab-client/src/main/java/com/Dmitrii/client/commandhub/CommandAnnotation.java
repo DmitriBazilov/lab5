@@ -5,6 +5,10 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ *
+ * Аннотация для комманд.
+ */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 public @interface CommandAnnotation {
@@ -12,5 +16,5 @@ public @interface CommandAnnotation {
 	String description();
 	boolean needWorker();
 	boolean needId();
-	int amountArgs();
+	boolean needPath();
 }

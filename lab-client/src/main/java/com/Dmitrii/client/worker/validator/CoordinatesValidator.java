@@ -2,6 +2,10 @@ package com.Dmitrii.client.worker.validator;
 
 import com.Dmitrii.client.worker.Coordinates;
 
+/**
+ *
+ * Валидатор Координат раба.
+ */
 public class CoordinatesValidator {
 
 	public static double validateX(String s) throws IllegalArgumentException, NumberFormatException {

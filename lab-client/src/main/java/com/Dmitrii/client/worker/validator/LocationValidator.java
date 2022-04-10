@@ -1,5 +1,9 @@
 package com.Dmitrii.client.worker.validator;
 
+/**
+ *
+ * Валидатор локации раба.
+ */
 public class LocationValidator {
 
 	public static Double validateX(String s) throws IllegalArgumentException {

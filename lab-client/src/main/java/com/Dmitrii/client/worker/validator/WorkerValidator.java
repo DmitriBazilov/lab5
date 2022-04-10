@@ -5,6 +5,10 @@ import java.time.ZonedDateTime;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
+/**
+ *
+ * Класс, вызывающий все валидаторы полей раба.
+ */
 public class WorkerValidator {
 	
 	public static Worker validateWorker(Worker w) throws IllegalArgumentException, NumberFormatException, DateTimeParseException, NullPointerException {
@@ -53,7 +57,11 @@ public class WorkerValidator {
 	public static ZonedDateTime validateCreationDate(ZonedDateTime time) throws IllegalArgumentException {
 		if (time == null) 
 			throw new IllegalArgumentException("Время не может быть null");
-		//Дописать для него валидатор
+		try {
+			ZonedDateTime result = CreationDateValidator.validateCreationDate(time.toString());
+		} catch (IllegalArgumentException e) {
+			throw e;
+		}
 		return time;
 	}
 
@@ -68,13 +76,13 @@ public class WorkerValidator {
 		}
 	}
 
-	public static LocalDateTime validateStartDate(LocalDateTime time) throws IllegalArgumentException, DateTimeParseException {
+	public static LocalDateTime validateStartDate(LocalDateTime time) throws IllegalArgumentException {
 		if (time == null)
 			throw new IllegalArgumentException("Время не может быть null");
 		try {
 			LocalDateTime result = StartDateValidator.validateStartDate(time.toString());
 			return result;
-		} catch (IllegalArgumentException | DateTimeParseException e) {
+		} catch (IllegalArgumentException e) {
 			throw e;
 		}
 	}
@@ -105,10 +113,14 @@ public class WorkerValidator {
 		if (p == null)
 			return null;
 		try {
-			Integer resultWeight = PersonValidator.validateWeight(p.getWeight().toString());
+			Integer resultWeight;
+			if (p.getWeight() != null)
+				resultWeight = PersonValidator.validateWeight(p.getWeight().toString());
 			Color resultEyeColor = PersonValidator.validateEyeColor(p.getEyeColor().toString());
 			Color resultHairColor = PersonValidator.validateHairColor(p.getHairColor().toString());
-			Location resultLocation = PersonValidator.validateLocation(p.getLocation().toString());
+			Location resultLocation;
+			if (p.getLocation() != null)
+				resultLocation = PersonValidator.validateLocation(p.getLocation().toString());
 			return p;
 		} catch (IllegalArgumentException | NullPointerException e) {
 			throw e;

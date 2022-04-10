@@ -3,11 +3,15 @@ package com.Dmitrii.client.commandhub;
 import java.util.TreeMap;
 import com.Dmitrii.client.worker.*;
 
+/**
+ *
+ * Команда обновления раба, требуется id.
+ */
 @CommandAnnotation(
 		description = "Заменить раба на нового",
 		needWorker = true,
 		needId = true,
-		amountArgs = 3)
+		needPath = false)
 public class UpdateId extends Command {
 
 	private Integer id;

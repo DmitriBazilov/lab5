@@ -5,6 +5,10 @@ import java.io.InputStreamReader;
 import java.io.InputStream;
 import java.io.IOException;
 
+/**
+ *
+ * Класс, созданный для считывания строк из консоли.
+ */
 public class LineReader {
 
 	private InputStreamReader streamReader;

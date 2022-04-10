@@ -11,6 +11,10 @@ import java.io.IOException;
 import java.util.TreeMap;
 import java.util.Collection;
 
+/**
+ *
+ * Класс - парсер. Парсит json. Умеет записывать и доставать рабов из файла.
+ */
 public class JsonParser extends Parser {
 
 	public List<Worker> getClasses(File jsonFile) {

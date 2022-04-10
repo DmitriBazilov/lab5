@@ -2,6 +2,10 @@ package com.Dmitrii.client.worker.validator;
 
 import com.Dmitrii.client.worker.Color;
 
+/**
+ *
+ * Валидатор цвета волос.
+ */
 public class HairColorValidator {
 
 	public static Color validateHairColor(String s) throws IllegalArgumentException, NullPointerException {

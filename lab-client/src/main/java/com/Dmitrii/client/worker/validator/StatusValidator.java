@@ -2,6 +2,10 @@ package com.Dmitrii.client.worker.validator;
 
 import com.Dmitrii.client.worker.Status;
 
+/**
+ *
+ * Валидатор статуса раба.
+ */
 public class StatusValidator {
 
 	public static Status validateStatus(String s) throws IllegalArgumentException {

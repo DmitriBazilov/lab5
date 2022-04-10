@@ -3,9 +3,13 @@ package com.Dmitrii.client.worker.validator;
 import com.Dmitrii.client.worker.Color;
 import com.Dmitrii.client.worker.Location;
 
+/**
+ *
+ * Класс, дополняющий и вызывающий валидаторы информации о рабе.
+ */
 public class PersonValidator {
 
-	public static Integer validateWeight(String s) throws IllegalArgumentException, NumberFormatException {
+	public static Integer validateWeight(String s) throws IllegalArgumentException {
 		if (s == null)
 			return null;
 		try {
@@ -35,9 +39,9 @@ public class PersonValidator {
 	}
 
 	public static Location validateLocation(String s) throws IllegalArgumentException, NumberFormatException {
-		String[] args = s.split("\\s+");
-		if (args == null)
+		if (s == null)
 			return null;
+		String[] args = s.split("\\s+");
 		if (args.length != 3)
 			throw new IllegalArgumentException("Координаты должно быть 3");
 		try {

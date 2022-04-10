@@ -1,6 +1,10 @@
 package com.Dmitrii.client.commandhub;
 
-@CommandAnnotation(description = "LIV IZ PROGI", needWorker = false, needId = false, amountArgs = 0)
+/**
+ *
+ * Команда, выхода из программы.
+ */
+@CommandAnnotation(description = "LIV IZ PROGI", needWorker = false, needId = false, needPath = false)
 public class Exit extends Command {
 
 	public boolean execute() {

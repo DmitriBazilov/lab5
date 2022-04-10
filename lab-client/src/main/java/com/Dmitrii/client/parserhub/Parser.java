@@ -6,6 +6,10 @@ import com.Dmitrii.client.worker.*;
 import java.io.IOException;
 import java.util.TreeMap;
 
+/**
+ *
+ * Абстрактный класс парсера.
+ */
 public abstract class Parser {
 
 	public abstract List<Worker> getClasses(File file);

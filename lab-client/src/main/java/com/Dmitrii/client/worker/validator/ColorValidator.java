@@ -2,6 +2,10 @@ package com.Dmitrii.client.worker.validator;
 
 import com.Dmitrii.client.worker.Color;
 
+/**
+ *
+ * Валидатор цвета.
+ */
 public class ColorValidator {
 
 	public static Color validateColor(String col) {

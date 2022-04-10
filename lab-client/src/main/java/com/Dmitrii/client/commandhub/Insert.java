@@ -3,7 +3,11 @@ package com.Dmitrii.client.commandhub;
 import java.util.TreeMap;
 import com.Dmitrii.client.worker.*;
 
-@CommandAnnotation(description = "Добавление раба", needWorker = true, needId = false, amountArgs = 3)
+/**
+ *
+ * Команда добавления раба.
+ */
+@CommandAnnotation(description = "Добавление раба", needWorker = true, needId = false, needPath = false)
 public class Insert extends Command {
 
 	private Worker worker;

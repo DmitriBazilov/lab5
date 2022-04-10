@@ -3,14 +3,13 @@ package com.Dmitrii.client.reader;
 import java.io.InputStream;
 import com.Dmitrii.client.worker.*;
 import com.Dmitrii.client.worker.validator.*;
+import java.io.File;
 import java.io.FileInputStream;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
-import java.util.logging.Logger;
 
 /**
  *
- * @author dmitrii
+ * Класс. Считывает аргументы для комманд.
  */
 public class ArgumentsReader extends LineReader {
 	
@@ -19,6 +18,18 @@ public class ArgumentsReader extends LineReader {
 	public ArgumentsReader(InputStream stream) {
 		super(stream);
 		isFileStream = stream instanceof FileInputStream;
+	}
+	
+	public String readPath() {
+		String result = this.readLine();
+		File t = new File(result);
+		if (!t.exists()) {
+			System.out.println("Файла не существует");
+			result = this.readPath();
+		} else {
+			return result;
+		}
+		return result;
 	}
 	
 	public Integer readId() throws IllegalArgumentException {
@@ -50,6 +61,8 @@ public class ArgumentsReader extends LineReader {
 		return result;
 	}
 	public String readName() throws IllegalArgumentException {
+		if (!isFileStream)
+			System.out.println("Введите имя раба : ");
 		String result;
 		try {
 			String line = this.readLine().trim();
@@ -65,6 +78,8 @@ public class ArgumentsReader extends LineReader {
 		return result;
 	}
 	public Coordinates readCoordinates() throws IllegalArgumentException {
+		if (!isFileStream)
+			System.out.println("Введите координаты X и Y : ");
 		Coordinates result;
 		try {
 			String line = this.readLine().trim();
@@ -87,6 +102,8 @@ public class ArgumentsReader extends LineReader {
 		return result;
 	}
 	public Long readSalary() throws IllegalArgumentException {
+		if (!isFileStream)
+			System.out.println("Введите зарплату раба : ");
 		Long result;
 		try {
 			String line = this.readLine().trim();
@@ -104,6 +121,8 @@ public class ArgumentsReader extends LineReader {
 		return result;
 	}
 	public LocalDateTime readStartDate() throws IllegalArgumentException {
+		if (!isFileStream)
+			System.out.println("Когда начал работать раб(yyyy-mm-dd T hh:mm:ss) : ");
 		LocalDateTime result;
 		try {
 			String line = this.readLine().trim();
@@ -121,6 +140,8 @@ public class ArgumentsReader extends LineReader {
 	}
 	
 	public Position readPosition() throws IllegalArgumentException {
+		if (!isFileStream)
+			System.out.println("Должность раба(MANAGER, LABORER, HUMAN_RESOURCES, LEAD_DEVELOPER, BAKER) : ");
 		Position result;
 		try {
 			String line = this.readLine();
@@ -137,6 +158,8 @@ public class ArgumentsReader extends LineReader {
 		return result;
 	}
 	public Status readStatus() throws IllegalArgumentException {
+		if (!isFileStream)
+			System.out.println("Статус раба(FIRED, RECOMMENDED_FOR_PROMOTION, PROBATION) : ");
 		Status result;
 		try {
 			String line = this.readLine();
@@ -162,6 +185,8 @@ public class ArgumentsReader extends LineReader {
 	}
 	
 	public Integer readWeight() throws IllegalArgumentException {
+		if (!isFileStream)
+			System.out.println("Вес раба : ");
 		Integer result;
 		try {
 			String line = this.readLine();
@@ -179,6 +204,8 @@ public class ArgumentsReader extends LineReader {
 	}
 	
 	public Color readEyeColor() throws IllegalArgumentException, NullPointerException {
+		if (!isFileStream)
+			System.out.println("Цвет глаз раба(RED, BLUE, WHITE, ORANGE, BLACK) : ");
 		Color result;
 		try {
 			String line = this.readLine();
@@ -196,6 +223,8 @@ public class ArgumentsReader extends LineReader {
 		return result;
 	}
 	public Color readHairColor() throws IllegalArgumentException, NullPointerException {
+		if (!isFileStream)
+			System.out.println("Цвет волос раба(RED, BLUE, WHITE, ORANGE, BLACK) : ");
 		Color result;
 		try {
 			String line = this.readLine();
@@ -214,6 +243,8 @@ public class ArgumentsReader extends LineReader {
 	}
 	
 	public Location readLocation() {
+		if (!isFileStream)
+			System.out.println("Координаты дома раба X, Y, Z (В душе не чаю откуда у раба дом) : ");
 		Location result;
 		try {
 			String line = this.readLine();

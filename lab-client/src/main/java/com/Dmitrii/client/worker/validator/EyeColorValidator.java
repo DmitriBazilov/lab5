@@ -2,6 +2,10 @@ package com.Dmitrii.client.worker.validator;
 
 import com.Dmitrii.client.worker.Color;
 
+/**
+ *
+ * Валидатор цвета глаз.
+ */
 public class EyeColorValidator {
 
 	public static Color validateEyeColor(String s) throws IllegalArgumentException, NullPointerException {

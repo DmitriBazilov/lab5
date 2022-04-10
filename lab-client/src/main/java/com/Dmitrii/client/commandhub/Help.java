@@ -1,10 +1,19 @@
 package com.Dmitrii.client.commandhub;
 
-@CommandAnnotation(description = "Список команд", needWorker = false, needId = false, amountArgs = 0)
+/**
+ *
+ * Команда, выводящая список всех комманд и их описание.
+ */
+@CommandAnnotation(description = "Список команд", needWorker = false, needId = false, needPath = false)
 public class Help extends Command {
 
 	public boolean execute() {
-		System.out.println(); //Написать справку
+		Commands[] coms = Commands.values();
+		for (Commands c : coms) {
+			CommandAnnotation comAnn;
+			comAnn = (CommandAnnotation) c.getCommandClass().getAnnotation(CommandAnnotation.class);
+			System.out.println(c.getCommandName() + " " + comAnn.description());
+		}
 		return true;
 	}
 }

@@ -1,5 +1,9 @@
 package com.Dmitrii.client.commandhub;
 
+/**
+ *
+ * Enum, в котором содержатся названия команд и их классы.
+ */
 public enum Commands {
 
 	HELP("help", Help.class),//+
@@ -7,7 +11,7 @@ public enum Commands {
 	SHOW("show", Show.class),//+
 	INSERT("insert", Insert.class),//+
 	UPDATE_ID("update", UpdateId.class),//+
-	REMOVE_KEY("remove_key", RemoveId.class),//+
+	REMOVE_KEY("remove_key", RemoveKey.class),//+
 	CLEAR("clear", Clear.class),//+
 	SAVE("save", Save.class),//+
 	EXECUTE_SCRIPT("execute_script", ExecuteScript.class),

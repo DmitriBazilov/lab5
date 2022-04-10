@@ -3,6 +3,10 @@ package com.Dmitrii.client.worker.validator;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
+/**
+ *
+ * Валидатор даты начала работы.
+ */
 public class StartDateValidator {
 
 	public static LocalDateTime validateStartDate(String s) throws IllegalArgumentException {

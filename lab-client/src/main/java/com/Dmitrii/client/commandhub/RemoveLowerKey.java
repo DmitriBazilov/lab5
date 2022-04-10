@@ -2,11 +2,15 @@ package com.Dmitrii.client.commandhub;
 
 import com.Dmitrii.client.worker.*;
 
+/**
+ *
+ * Команда, удаляюшая рабов, у который id меньше чем заданный.
+ */
 @CommandAnnotation(
 		description = "Убрать рабов у которых айди меньше заданого",
 		needWorker = false,
 		needId = true,
-		amountArgs = 0)
+		needPath = false)
 public class RemoveLowerKey extends Command {
 
 	private Integer key;

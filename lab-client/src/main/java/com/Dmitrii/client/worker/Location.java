@@ -3,6 +3,10 @@ package com.Dmitrii.client.worker;
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ *
+ * Местонахождение в 3-мерном пространстве.
+ */
 public class Location {
 
 	private Double x;

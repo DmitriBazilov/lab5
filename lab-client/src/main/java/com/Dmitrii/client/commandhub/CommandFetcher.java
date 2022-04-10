@@ -6,22 +6,52 @@ import com.Dmitrii.client.worker.*;
 import java.io.InputStream;
 import java.time.format.DateTimeParseException;
 
+/**
+ *
+ * Класс работающий с выборкой команд, их запуском, чтением аргументов.
+ */
 public class CommandFetcher {
 
 	private boolean needId;
 	private boolean needWorker;
-	private int amountArgs;
+	private boolean needPath;
+	private String description;
 
 	public CommandFetcher() {
 	}
 	
+	public String getDescription() {
+		return description;
+	}
+	
+	public boolean getNeedId() {
+		return needId;
+	}
+	
+	public boolean getNeedWorker() {
+		return needWorker;
+	}
+	
+	public boolean getNeedPath() {
+		return needPath;
+	}
+	
+	/**
+	 * 
+	 * Метод проверяющий поля аннотации над командой
+	 */
 	public void checkAnnotation(Class command) {
 			CommandAnnotation comAnn = (CommandAnnotation) command.getAnnotation(CommandAnnotation.class);
 			needId = comAnn.needId();
 			needWorker = comAnn.needWorker();
-			amountArgs = comAnn.amountArgs();
+			needPath = comAnn.needPath();
+			description = comAnn.description();
 	}
 	
+	/**
+	 * 
+	 * Метод, выбирающий по строке от пользователя нужный класс команды
+	 */
 	public Class fetchCommand(String line) {
 		String name = line;
 		Commands[] coms = Commands.values();
@@ -34,21 +64,15 @@ public class CommandFetcher {
 		throw new IllegalArgumentException("Сорян такой команды нет");
 	}
 	
-	public Integer fetchId(String line) {
-		Integer result = Integer.parseInt(line);
-		return result;
-	}
-	
-	public boolean checkAmountArgs(int number) {
-		return number == amountArgs;
-	}
-	
+	/**
+	 * 
+	 * Метод запускающий команды без аргументов.
+	 */
 	public void startCommand(Class command) throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
 		try {
 			//Перенести проверку аннотации
 			Command comInstance = (Command) command.newInstance();
 			boolean returnCode = comInstance.execute();
-			System.out.println("YA DAUN");
 		} catch (IllegalAccessException e) {
 			throw new IllegalAccessException("БЛАБЛАБЛА");
         } catch (InstantiationException e) {
@@ -56,6 +80,10 @@ public class CommandFetcher {
 		}
 	}
 	
+	/**
+	 * 
+	 * Метод, запускающий команды, требующие id.
+	 */
 	public void startCommand(Class command, Integer id) throws NoSuchMethodException, 
 														SecurityException, 
 														InstantiationException,
@@ -63,34 +91,48 @@ public class CommandFetcher {
 														IllegalArgumentException,
 														InvocationTargetException {
 		
-			System.out.println(command);
 			Constructor<Command> cons = command.getDeclaredConstructor(Integer.class);
-			System.out.println("PIDOR");
 			Command comInstance = cons.newInstance(id);
-			System.out.println("PIDOR");
 			boolean returnCode = comInstance.execute();
-			System.out.println("TbI DAUN");
 	}
 	
+	/**
+	 * 
+	 * Метод, запускающий команды, требующие раба.
+	 */
 	public void startCommand(Class command, Worker worker) throws NoSuchMethodException, 
 															InstantiationException, 
 															IllegalAccessException, 
 															IllegalArgumentException, 
 															InvocationTargetException {
-			System.out.println(command);
-			Constructor<Command> cons = command.getDeclaredConstructor(Worker.class);
-			Command comInstance = cons.newInstance(worker);
-			comInstance.execute();
+		Constructor<Command> cons = command.getDeclaredConstructor(Worker.class);
+		Command comInstance = cons.newInstance(worker);
+		comInstance.execute();
 			
 	}
 	
-	public void startCommand(Class command, Integer id, Worker worker) {
-		
+	/**
+	 * 
+	 * Метод, запускающий команды, требующие id и раба.
+	 */
+	public void startCommand(Class command, Integer id, Worker worker) throws NoSuchMethodException, 
+																		InstantiationException, 
+																		IllegalAccessException, 
+																		IllegalArgumentException, 
+																		InvocationTargetException {
+		Constructor<Command> cons = command.getDeclaredConstructor(Integer.class, Worker.class);
+		Command comInstance = cons.newInstance(id, worker);
+		comInstance.execute();
 	}
 	
+	/**
+	 * 
+	 * Метод считывающий id.
+	 */
 	public Integer readId(InputStream stream) throws IllegalArgumentException {
 		if (!needId) 
 			return null;
+		System.out.println("Введите id");
 		ArgumentsReader reader = new ArgumentsReader(stream);
 		Integer result = null;
 		while (result == null) {
@@ -103,6 +145,10 @@ public class CommandFetcher {
 		return result;
 	}
 	
+	/**
+	 * 
+	 * Метод считывающий раба.
+	 */
 	public Worker readWorker(InputStream stream) {
 		if (!needWorker)
 			return null;
@@ -117,6 +163,21 @@ public class CommandFetcher {
 		}
 		return result;
 	}
+	
+	/**
+	 * 
+	 * Метод считывающий путь до файла.
+	 */
+	public String readPath(InputStream stream) {
+		if (!needPath)
+			return null;
+		ArgumentsReader reader = new ArgumentsReader(stream);
+		String result = null;
+		while (result == null) {
+			result = reader.readPath();
+		}
+		return result;
+	} 
 	
 	public void clear() {
 	}

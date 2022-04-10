@@ -1,6 +1,10 @@
 package com.Dmitrii.client.commandhub;
 
- public abstract class Command {
+/**
+ *
+ * Абстрактный класс для всех команд.
+ */
+public abstract class Command {
 
 	public abstract boolean execute();
 }

@@ -2,11 +2,15 @@ package com.Dmitrii.client.commandhub;
 
 import com.Dmitrii.client.worker.*;
 
+/**
+ *
+ * Команда, удаления раба по id.
+ */
 @CommandAnnotation(
-		description = "Убрать раба по ключу",
+		description = "Убрать раба по айди",
 		needWorker = false,
 		needId = true,
-		amountArgs = 0)
+		needPath = false)
 public class RemoveKey extends Command {
 
 	private Integer key;

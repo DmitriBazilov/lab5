@@ -2,13 +2,15 @@ package com.Dmitrii.client.worker;
 
 import java.util.TreeMap;
 import java.util.List;
-import java.io.File;
 import java.util.Collection;
 import java.util.Date;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ *
+ * Класс оболочка для коллекции. Содержит реализации комманд, работающих с коллекцией.
+ */
 public class WorkerCollection {
 
 	private static TreeMap<Integer, Worker> workerCollection;
@@ -73,11 +75,16 @@ public class WorkerCollection {
 	}
 	
 	public static void removeLowerKey(Integer key) {
+		key--;
 		while (workerCollection.floorKey(key) != null) 
 			WorkerCollection.removeId(key);
 	}
 
 	public static void replaceIfGreater(Integer id, Worker worker) {
+		if (worker.compareTo(workerCollection.get(id)) > 0) {
+			workerCollection.remove(id);
+			workerCollection.put(id, worker);
+		}
 	}
 
 	public static void maxBySalary() {

@@ -2,7 +2,11 @@ package com.Dmitrii.client.commandhub;
 
 import com.Dmitrii.client.worker.WorkerCollection;
 
-@CommandAnnotation(description = "SOSY", needWorker = false, needId = false, amountArgs = 0)
+/**
+ * Класс команды очистки коллекции.
+ * 
+ */
+@CommandAnnotation(description = "Убрать всех рабов", needWorker = false, needId = false, needPath = false)
 public class Clear extends Command {
 
 	public boolean execute() {

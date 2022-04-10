@@ -5,7 +5,11 @@ import com.Dmitrii.client.worker.Worker;
 import com.Dmitrii.client.worker.WorkerCollection;
 import java.util.Collection;
 
-@CommandAnnotation(description = "Вывод самого успешного раба", needWorker = false, needId = false, amountArgs = 0)
+/**
+ *
+ * Команда вывода богатейшего раба.
+ */
+@CommandAnnotation(description = "Вывод самого успешного раба", needWorker = false, needId = false, needPath = false)
 public class MaxBySalary extends Command {
 
 	public boolean execute() {

@@ -1,5 +1,9 @@
 package com.Dmitrii.client.worker;
 
+/**
+ *
+ * Enum содержащий возможные должности рабов.
+ */
 public enum Position {
 
 	MANAGER,

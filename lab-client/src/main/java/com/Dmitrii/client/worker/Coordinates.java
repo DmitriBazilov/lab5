@@ -1,5 +1,9 @@
 package com.Dmitrii.client.worker;
 
+/**
+ *
+ * Координаты 2-мерного пространства.
+ */
 public class Coordinates {
 
 	private double x;
